@@ -307,9 +307,9 @@ export function ChatArea({ conversationId }: ChatAreaProps) {
             }}
             disabled={!conversationId || loading}
             placeholder={
-              conversationId ? "Message..." : "Sélectionnez une conversation..."
+              conversationId ? "Votre message..." : "Sélectionnez une conversation..."
             }
-            className="flex-1 bg-transparent text-foreground placeholder-foreground/50 focus:outline-none text-sm leading-relaxed disabled:opacity-50"
+            className="flex-1 bg-transparent text-white placeholder-white/40 focus:outline-none text-sm leading-relaxed disabled:opacity-50 transition-colors"
           />
 
           {/* Emoji Picker */}
