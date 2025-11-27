@@ -448,13 +448,13 @@ export function ChatArea({ conversationId }: ChatAreaProps) {
           <button
             onClick={handleSend}
             disabled={loading || !message.trim()}
-            className="p-2.5 text-white/60 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-200 hover:bg-gradient-to-r hover:from-orange-600/40 hover:to-orange-500/30 rounded-lg flex items-center justify-center hover:scale-110 transform disabled:hover:scale-100"
+            className="p-1.5 text-muted-foreground hover:text-primary disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-200 hover:bg-secondary rounded-lg flex items-center justify-center transform disabled:hover:scale-100"
             aria-label="Envoyer le message"
           >
             {loading ? (
-              <Loader2 size={20} className="animate-spin" />
+              <Loader2 size={18} className="animate-spin" />
             ) : (
-              <Send size={20} />
+              <Send size={18} />
             )}
           </button>
         </div>
