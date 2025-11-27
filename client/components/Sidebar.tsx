@@ -6,6 +6,7 @@ import {
   Edit2,
   Loader2,
   Shield,
+  X,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { signOut } from "firebase/auth";
@@ -212,20 +213,20 @@ export function Sidebar({
 
       {/* Sidebar */}
       <aside
-        className={`fixed md:static inset-y-0 left-0 w-64 bg-sidebar border-r-2 border-white/20 flex flex-col transition-transform ${
+        className={`fixed inset-y-0 left-0 w-56 sm:w-64 bg-sidebar border-r-2 border-white/20 flex flex-col transition-transform duration-300 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
-        } md:translate-x-0 z-50 animate-slideInLeft`}
+        } z-50 animate-slideInLeft shadow-2xl shadow-black/50`}
       >
         {/* Header - Minimal */}
-        <div className="p-4 animate-fadeIn">
-          <div className="flex items-center gap-3 mb-2 justify-between">
+        <div className="p-3 sm:p-4 animate-fadeIn">
+          <div className="flex items-center gap-2 sm:gap-3 mb-2 justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-foreground rounded-full flex items-center justify-center text-background text-sm font-bold border-2 border-white hover:scale-110 transition-transform">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-foreground rounded-full flex items-center justify-center text-background text-xs sm:text-sm font-bold border-2 border-white hover:scale-110 transition-transform flex-shrink-0">
                 {userInitial}
               </div>
-              <div>
-                <div className="flex items-center gap-2">
-                  <p className="text-sm font-semibold text-foreground">
+              <div className="hidden sm:block min-w-0">
+                <div className="flex items-center gap-1 sm:gap-2">
+                  <p className="text-xs sm:text-sm font-semibold text-foreground truncate">
                     {loading ? "..." : userData?.displayName || "Utilisateur"}
                   </p>
                   {userData?.isAdmin && (
@@ -237,51 +238,61 @@ export function Sidebar({
                 </p>
               </div>
             </div>
-            <Popover open={isMenuOpen} onOpenChange={setIsMenuOpen}>
-              <PopoverTrigger asChild>
-                <button className="p-1.5 hover:bg-white/10 rounded-lg transition-colors text-foreground/70 hover:text-foreground">
-                  <MoreVertical size={16} />
-                </button>
-              </PopoverTrigger>
-              <PopoverContent className="w-40 p-2 bg-card border-2 border-white rounded-xl">
-                <div className="space-y-1">
-                  <button
-                    onClick={() => {
-                      setIsSettingsOpen(true);
-                      setIsMenuOpen(false);
-                    }}
-                    className="w-full text-left px-3 py-2 rounded-lg text-sm text-foreground/70 hover:text-foreground hover:bg-white/10 transition-colors"
-                  >
-                    Paramètres
+            <div className="flex items-center gap-2">
+              <button
+                onClick={onClose}
+                className="p-1.5 hover:bg-white/10 rounded-lg transition-colors text-foreground/70 hover:text-foreground"
+                aria-label="Fermer le menu"
+                title="Fermer le menu"
+              >
+                <X size={18} />
+              </button>
+              <Popover open={isMenuOpen} onOpenChange={setIsMenuOpen}>
+                <PopoverTrigger asChild>
+                  <button className="p-1.5 hover:bg-white/10 rounded-lg transition-colors text-foreground/70 hover:text-foreground">
+                    <MoreVertical size={16} />
                   </button>
-                  <button
-                    onClick={() => {
-                      setIsHelpOpen(true);
-                      setIsMenuOpen(false);
-                    }}
-                    className="w-full text-left px-3 py-2 rounded-lg text-sm text-foreground/70 hover:text-foreground hover:bg-white/10 transition-colors"
-                  >
-                    Aide
-                  </button>
-                  {userData?.isAdmin && (
-                    <>
-                      <div className="h-px bg-white/10 my-1" />
-                      <button
-                        onClick={() => {
-                          navigate("/admin");
-                          setIsMenuOpen(false);
-                        }}
-                        className="w-full text-left px-3 py-2 rounded-lg text-sm text-white font-semibold hover:bg-white/10 transition-colors"
-                      >
-                        Panneau Admin
-                      </button>
-                    </>
-                  )}
-                </div>
-              </PopoverContent>
-            </Popover>
+                </PopoverTrigger>
+                <PopoverContent className="w-40 p-2 bg-card border-2 border-white rounded-xl">
+                  <div className="space-y-1">
+                    <button
+                      onClick={() => {
+                        setIsSettingsOpen(true);
+                        setIsMenuOpen(false);
+                      }}
+                      className="w-full text-left px-3 py-2 rounded-lg text-sm text-foreground/70 hover:text-foreground hover:bg-white/10 transition-colors"
+                    >
+                      Paramètres
+                    </button>
+                    <button
+                      onClick={() => {
+                        setIsHelpOpen(true);
+                        setIsMenuOpen(false);
+                      }}
+                      className="w-full text-left px-3 py-2 rounded-lg text-sm text-foreground/70 hover:text-foreground hover:bg-white/10 transition-colors"
+                    >
+                      Aide
+                    </button>
+                    {userData?.isAdmin && (
+                      <>
+                        <div className="h-px bg-white/10 my-1" />
+                        <button
+                          onClick={() => {
+                            navigate("/admin");
+                            setIsMenuOpen(false);
+                          }}
+                          className="w-full text-left px-3 py-2 rounded-lg text-sm text-white font-semibold hover:bg-white/10 transition-colors"
+                        >
+                          Panneau Admin
+                        </button>
+                      </>
+                    )}
+                  </div>
+                </PopoverContent>
+              </Popover>
+            </div>
           </div>
-          <p className="text-xs text-foreground/50 truncate">
+          <p className="text-xs text-foreground/50 truncate hidden sm:block">
             {loading ? "..." : userData?.email}
           </p>
         </div>
