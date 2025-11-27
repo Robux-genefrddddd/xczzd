@@ -58,6 +58,10 @@ export function ChatArea({ conversationId }: ChatAreaProps) {
     }
   }, [conversationId, user?.uid]);
 
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [chatMessages, loading, isThinking]);
+
   const loadMessages = async () => {
     if (!conversationId) return;
     try {
