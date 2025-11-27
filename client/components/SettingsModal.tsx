@@ -124,17 +124,10 @@ export function SettingsModal({ isOpen, onOpenChange }: SettingsModalProps) {
                 className="animate-fadeIn"
                 style={{ animationDelay: "0.05s" }}
               >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary/60 to-primary/80 flex items-center justify-center flex-shrink-0">
-                    <span className="text-xs font-semibold text-primary-foreground">
-                      {userData?.displayName?.[0]?.toUpperCase() || "U"}
-                    </span>
-                  </div>
-                  <h3 className="text-sm font-semibold text-foreground">
-                    Photo de profil
-                  </h3>
-                </div>
-                <div className="bg-white/[0.02] border border-white/[0.08] rounded-[14px] p-5 shadow-sm">
+                <h3 className="text-xs font-semibold text-foreground/80 uppercase tracking-wider mb-3">
+                  Photo de profil
+                </h3>
+                <div className="bg-white/[0.03] rounded-[10px] p-4 shadow-sm">
                   <ProfilePhotoUpload
                     userId={user.uid}
                     currentPhotoUrl={
