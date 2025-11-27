@@ -373,9 +373,9 @@ export function ChatArea({ conversationId }: ChatAreaProps) {
         )}
       </div>
 
-      {/* Message Input Area */}
+      {/* Message Input Area - Fixed at Bottom */}
       <div
-        className="px-4 sm:px-6 md:px-8 py-4 sm:py-6 animate-slideUp"
+        className="px-4 sm:px-6 md:px-8 py-4 sm:py-6 animate-slideUp border-t border-white/10 bg-gradient-to-t from-background to-transparent"
         style={{ animationDelay: "0.2s" }}
       >
         <div
