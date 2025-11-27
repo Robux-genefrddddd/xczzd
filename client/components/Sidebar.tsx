@@ -238,12 +238,21 @@ export function Sidebar({
                 </p>
               </div>
             </div>
-            <Popover open={isMenuOpen} onOpenChange={setIsMenuOpen}>
-              <PopoverTrigger asChild>
-                <button className="p-1.5 hover:bg-white/10 rounded-lg transition-colors text-foreground/70 hover:text-foreground">
-                  <MoreVertical size={16} />
-                </button>
-              </PopoverTrigger>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={onClose}
+                className="p-1.5 hover:bg-white/10 rounded-lg transition-colors text-foreground/70 hover:text-foreground"
+                aria-label="Fermer le menu"
+                title="Fermer le menu"
+              >
+                <X size={18} />
+              </button>
+              <Popover open={isMenuOpen} onOpenChange={setIsMenuOpen}>
+                <PopoverTrigger asChild>
+                  <button className="p-1.5 hover:bg-white/10 rounded-lg transition-colors text-foreground/70 hover:text-foreground">
+                    <MoreVertical size={16} />
+                  </button>
+                </PopoverTrigger>
               <PopoverContent className="w-40 p-2 bg-card border-2 border-white rounded-xl">
                 <div className="space-y-1">
                   <button
@@ -281,6 +290,7 @@ export function Sidebar({
                 </div>
               </PopoverContent>
             </Popover>
+            </div>
           </div>
           <p className="text-xs text-foreground/50 truncate">
             {loading ? "..." : userData?.email}
